@@ -1,0 +1,49 @@
+﻿@model IEnumerable<HelloMVC.Models.Customer>
+
+@{
+    ViewBag.Title = "CustomerList";
+}
+
+<h2>CustomerList</h2>
+
+<p>
+    @Html.ActionLink("Create New", "AddCustomer")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telephone)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Telephone)
+        </td>
+        <td>
+            @*@Html.ActionLink("Edit", "EditCustomer", new { id = item.Id }) |
+        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
+
+            <a href="/Home/EditCustomer/@item.Id" class="btn btn-success" title="Edit">
+                <span class="glyphicon glyphicon-edit"></span> Edit
+            </a>
+            <a href="/Home/ViewCustomer/@item.Id" class="btn btn-info" title="Detail">
+                <span class="glyphicon glyphicon-search"></span> Detail
+            </a>
+            <a href="/Home/DeleteCustomer/@item.Id" class="btn btn-danger" title="Delete">
+                <span class="glyphicon glyphicon-trash"></span> Delete
+            </a> 
+        </td>
+    </tr>
+}
+
+</table>
